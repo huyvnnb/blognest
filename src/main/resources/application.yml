@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: blognest
+
+  datasource:
+    url: "jdbc:mysql://localhost:3306/blognest"
+    username: root
+    password: huy50023030
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    hikari:
+      pool-name: BlognestHikariCP
+      maximum-pool-size: 10   # Số connection tối đa trong pool
+      minimum-idle: 5         # Số connection tối thiểu ở trạng thái nhàn rỗi
+      idle-timeout: 30000     # Thời gian tối đa (ms) một connection nhàn rỗi
+      max-lifetime: 1800000   # Thời gian tối đa (ms) tồn tại của một connection
+      connection-timeout: 20000
+
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
