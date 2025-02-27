@@ -1,6 +1,6 @@
 package com.huyvnnb.blognest.dto.response;
 
-import com.huyvnnb.blognest.utils.Gender;
+import com.huyvnnb.blognest.enums.Gender;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
