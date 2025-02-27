@@ -1,19 +1,14 @@
 package com.huyvnnb.blognest.entity;
 
-import com.fasterxml.jackson.databind.annotation.EnumNaming;
-import com.huyvnnb.blognest.util.Gender;
-import com.huyvnnb.blognest.util.Role;
+import com.huyvnnb.blognest.enums.Gender;
+import com.huyvnnb.blognest.enums.Role;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Data
