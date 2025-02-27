@@ -7,11 +7,11 @@ import com.huyvnnb.blognest.exception.AppException;
 import com.huyvnnb.blognest.exception.ErrorCode;
 import com.huyvnnb.blognest.mapper.UserMapper;
 import com.huyvnnb.blognest.repository.UserRepository;
-import com.huyvnnb.blognest.util.Role;
+import com.huyvnnb.blognest.enums.Role;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +22,7 @@ import java.util.List;
 public class UserService {
     UserRepository userRepository;
     UserMapper userMapper;
+    PasswordEncoder encoder;
 
 
     public UserResponse createUser(UserCreationRequest request){
@@ -31,7 +32,7 @@ public class UserService {
 
         User user = userMapper.toUser(request);
         user.setRole(Role.USER);
-
+        user.setPassword(encoder.encode(user.getPassword()));
         return userMapper.toUserResponse(userRepository.save(user));
     }
     
@@ -40,7 +41,9 @@ public class UserService {
             throw new AppException(ErrorCode.USER_LIST_EMPTY);
         }
         return userRepository.findAll().stream()
-                .map(user -> userMapper.toUserResponse(user))
+                .map(userMapper::toUserResponse)
                 .toList();
     }
+
+
 }
